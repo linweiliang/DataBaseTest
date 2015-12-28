@@ -1,4 +1,4 @@
-package com.lwl.androidprojectstructuremode.util;
+package com.lwl.databasetest.util;
 
 import android.util.Log;
 

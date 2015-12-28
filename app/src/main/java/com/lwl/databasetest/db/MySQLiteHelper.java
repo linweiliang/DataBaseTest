@@ -1,6 +1,7 @@
 package com.lwl.databasetest.db;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -27,22 +28,26 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	//创建表
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		try {
-			db.execSQL("CREATE TABLE IF NOT EXISTS " +
-							TB_NAME + "(" +
-							UserInfo.ID + " integer primary key," +
-							UserInfo.USERID + " varchar," +
-							UserInfo.TOKEN + " varchar," +
-							UserInfo.TOKENSECRET + " varchar," +
-							UserInfo.USERNAME + " varchar," +
-							UserInfo.USERICON + " blob" +
-							")"
-			);
-		} catch (SQLException e) {
-			e.printStackTrace();
+//		if (tabIsExist(db, TB_NAME)) {
+//
+//		}else {
+			try {
+				db.execSQL("CREATE TABLE IF NOT EXISTS " +
+								TB_NAME + "(" +
+								UserInfo.ID + " integer primary key," +
+								UserInfo.USERID + " varchar," +
+								UserInfo.TOKEN + " varchar," +
+								UserInfo.TOKENSECRET + " varchar," +
+								UserInfo.USERNAME + " varchar," +
+								UserInfo.USERICON + " blob" +
+								")"
+				);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			Log.e("Database", "onCreate");
 		}
-		Log.e("Database", "onCreate");
-	}
+//	}
 
 	//更新表
 	@Override
@@ -61,4 +66,34 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * 判断某张表是否存在
+	 * @param tabName 表名
+	 * @return
+	 */
+	private  boolean tabIsExist(SQLiteDatabase db,String tabName){
+		boolean result = false;
+		if(tabName == null){
+			return false;
+		}
+		Cursor cursor = null;
+		try {
+
+			String sql = "select count(*) as c from sqlite_master where type ='table' and name ='"+tabName.trim()+"' ";
+			cursor = db.rawQuery(sql, null);
+			if(cursor.moveToNext()){
+				int count = cursor.getInt(0);
+				if(count>0){
+					result = true;
+				}
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return result;
+	}
+
 }
+

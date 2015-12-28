@@ -32,13 +32,15 @@ public class DataHelper {
 		db = dbHelper.getWritableDatabase();
 	}
 
-	public void Close() {
+	public void close() {
 		db.close();
 		dbHelper.close();
 	}
 
-	// 获取users表中的UserID、Access Token、Access Secret的记录
-	public List<UserInfo> GetUserList(Boolean isSimple) {
+
+
+	// 获取users表中的UserID、Access Token、Access Secret的记录 倒序
+	public List<UserInfo> getUserList(Boolean isSimple) {
 		List<UserInfo> userList = new ArrayList<UserInfo>();
 		Cursor cursor = db.query(MySQLiteHelper.TB_NAME, null, null, null, null,
 				null, UserInfo.ID + " DESC");
@@ -63,7 +65,7 @@ public class DataHelper {
 	}
 
 	// 查看——判断users表中的是否包含某个UserID的记录
-	public Boolean HaveUserInfo(String UserId) {
+	public Boolean haveUserInfo(String UserId) {
 		Boolean b = false;
 		Cursor cursor = db.query(MySQLiteHelper.TB_NAME, null, UserInfo.USERID
 				+ "=?", new String[]{UserId}, null, null, null);
@@ -74,7 +76,7 @@ public class DataHelper {
 	}
 
 	// 更新users表的记录，根据UserId更新用户昵称和用户图标
-	public int UpdateUserInfo(String userName, Bitmap userIcon, String UserId) {
+	public int updateUserInfo(String userName, Bitmap userIcon, String UserId) {
 		ContentValues values = new ContentValues();
 		values.put(UserInfo.USERNAME, userName);
 		// BLOB类型
@@ -89,7 +91,7 @@ public class DataHelper {
 	}
 
 	// 更新users表的记录
-	public int UpdateUserInfo(UserInfo user) {
+	public int updateUserInfo(UserInfo user) {
 		ContentValues values = new ContentValues();
 		values.put(UserInfo.USERID, user.getUserId());
 		values.put(UserInfo.TOKEN, user.getToken());
@@ -101,7 +103,7 @@ public class DataHelper {
 	}
 
 	// 添加users表的记录
-	public Long SaveUserInfo(UserInfo user) {
+	public Long addUserInfo(UserInfo user) {
 		ContentValues values = new ContentValues();
 		values.put(UserInfo.USERID, user.getUserId());
 		values.put(UserInfo.TOKEN, user.getToken());
@@ -112,7 +114,7 @@ public class DataHelper {
 	}
 
 	// 添加users表的记录（user跟icon）
-	public Long SaveUserInfo(UserInfo user, byte[] icon) {
+	public Long addUserInfo(UserInfo user, byte[] icon) {
 		ContentValues values = new ContentValues();
 		values.put(UserInfo.USERID, user.getUserId());
 		values.put(UserInfo.USERNAME, user.getUserName());
@@ -127,12 +129,14 @@ public class DataHelper {
 	}
 
 	// 删除users表的记录
-	public int DelUserInfo(String UserId) {
+	public int delUserInfo(String UserId) {
 		int id = db.delete(MySQLiteHelper.TB_NAME,
 				UserInfo.USERID + "=?", new String[]{UserId});
 		Log.e("DelUserInfo", id + "");
 		return id;
 	}
+
+
 
 
 
