@@ -1,4 +1,4 @@
-package com.lwl.androidprojectstructuremode.db;
+package com.lwl.databasetest.db;
 
 import android.content.Context;
 import android.database.SQLException;
@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.lwl.androidprojectstructuremode.bean.UserInfo;
+import com.lwl.databasetest.bean.UserInfo;
 
 
 /**

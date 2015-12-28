@@ -1,8 +1,8 @@
-package com.lwl.androidprojectstructuremode;
+package com.lwl.databasetest;
 
 import android.app.Application;
 
-import com.lwl.androidprojectstructuremode.phoneInfo.PhoneInfo;
+import com.lwl.databasetest.phoneInfo.PhoneInfo;
 
 /**
  * Created by LWL on 15/12/25.

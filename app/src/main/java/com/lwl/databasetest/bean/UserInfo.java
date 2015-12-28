@@ -1,4 +1,4 @@
-package com.lwl.androidprojectstructuremode.bean;
+package com.lwl.databasetest.bean;
 
 import android.graphics.drawable.Drawable;
 

@@ -1,4 +1,4 @@
-package com.lwl.androidprojectstructuremode.db;
+package com.lwl.databasetest.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
-import com.lwl.androidprojectstructuremode.bean.UserInfo;
+import com.lwl.databasetest.bean.UserInfo;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

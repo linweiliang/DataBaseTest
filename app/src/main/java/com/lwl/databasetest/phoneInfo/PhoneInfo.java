@@ -1,4 +1,4 @@
-package com.lwl.androidprojectstructuremode.phoneInfo;
+package com.lwl.databasetest.phoneInfo;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
